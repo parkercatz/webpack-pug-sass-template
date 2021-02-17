@@ -1,4 +1,5 @@
 import { hello } from './js/sub'
+import './scss/style.scss'
 
 console.log('Hello World')
 
