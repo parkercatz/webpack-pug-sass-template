@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const ImageminPlugin = require('imagemin-webpack-plugin').default
@@ -19,6 +20,17 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.pug$/,
+        use: [
+          {
+            loader: 'pug-loader',
+            options: {
+              pretty: true,
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -50,6 +62,18 @@ module.exports = {
     ],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/pug/index.pug', //変換元のPugファイルの指定
+      filename: 'index.html', //出力するHTMLのファイル名
+      inject: false, //バンドルしたjsファイルを読み込むscriptタグを自動出力しない
+      minify: false, //minifyしない
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/pug/sub.pug',
+      filename: 'sub.html',
+      inject: false,
+      minify: false,
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/style.css',
     }),
