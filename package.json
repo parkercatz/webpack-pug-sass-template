@@ -7,21 +7,20 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "watch": "webpack  --mode development --watch",
-    "lint": "stylelint --fix src/scss/**/*.scss",
-    "format": "prettier-stylelint --quiet --write src/scss/**/*.scss"
+    "lint": "stylelint --fix src/scss/**/*.scss"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "precommit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": [
+    "**/*.{js}": [
       "eslint --fix",
       "git add"
     ],
-    "*.{css,scss}": [
-      "stylelint --fix",
+    "**/*.{css,scss}": [
+      "npm run lint",
       "git add"
     ]
   },
