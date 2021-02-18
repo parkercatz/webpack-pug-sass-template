@@ -5,6 +5,7 @@ const CopyPlugin = require("copy-webpack-plugin")
 const ImageminPlugin = require("imagemin-webpack-plugin").default
 const ImageminMozjpeg = require("imagemin-mozjpeg")
 const StyleLintPlugin = require("stylelint-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
   mode: "production",
@@ -73,6 +74,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin({ verbose: true }),
     new HtmlWebpackPlugin({
       template: "./src/pug/index.pug", //変換元のPugファイルの指定
       filename: "index.html", //出力するHTMLのファイル名
