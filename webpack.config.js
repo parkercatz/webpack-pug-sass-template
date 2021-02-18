@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 const ImageminPlugin = require("imagemin-webpack-plugin").default
 const ImageminMozjpeg = require("imagemin-mozjpeg")
+const StyleLintPlugin = require("stylelint-webpack-plugin")
 
 module.exports = {
   mode: "production",
@@ -107,6 +108,10 @@ module.exports = {
           progressive: true,
         }),
       ],
+    }),
+    new StyleLintPlugin({
+      configFile: ".stylelintrc.json",
+      fix: true, //自動修正可能なものは修正
     }),
   ],
 }

@@ -1,8 +1,11 @@
-@import './sub.scss';
+@import "./sub.scss";
 
 .example {
+  position: relative;
+  top: 100;
   display: flex;
-  color: black;
   width: 100%;
+  height: auto;
+  color: black;
   background-color: red;
 }
