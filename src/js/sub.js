@@ -1,3 +1,3 @@
 export function hello() {
-  console.log('Sub Hello')
+  console.log("Sub Hello")
 }

@@ -11,7 +11,5 @@
 
   "root": true,
 
-  "rules": {
-    "quotes": ["error", "single"] //クォーテーションががシングルのときエラー
-  }
+  "rules": {}
 }
