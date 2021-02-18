@@ -22,6 +22,9 @@
     "**/*.{css,scss}": [
       "npm run lint",
       "git add"
+    ],
+    "ignore": [
+      "dist/**/*"
     ]
   },
   "keywords": [],
