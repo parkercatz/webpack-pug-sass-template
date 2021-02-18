@@ -75,6 +75,12 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    contentBase: path.resolve(__dirname, "dist"),
+    open: true, //起動時にブラウザを開く
+    overlay: true, //エラーをオーバーレイ表示
+    port: 3000,
+  },
   plugins: [
     new CleanWebpackPlugin({ verbose: true }),
     new HtmlWebpackPlugin({

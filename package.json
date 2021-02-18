@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "webpack serve",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "watch": "webpack  --mode development --watch",
@@ -67,6 +68,7 @@
     "stylelint-scss": "^3.19.0",
     "stylelint-webpack-plugin": "^2.1.1",
     "webpack": "^5.22.0",
-    "webpack-cli": "^4.5.0"
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }
