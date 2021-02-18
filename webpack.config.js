@@ -1,31 +1,41 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
-const ImageminPlugin = require('imagemin-webpack-plugin').default
-const ImageminMozjpeg = require('imagemin-mozjpeg')
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
+const ImageminPlugin = require("imagemin-webpack-plugin").default
+const ImageminMozjpeg = require("imagemin-mozjpeg")
 
 module.exports = {
-  mode: 'production',
+  mode: "production",
 
-  entry: './src/index.js',
+  entry: "./src/index.js",
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'js/main.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "js/main.js",
   },
   module: {
     rules: [
       {
+        enforce: "pre",
+        test: /\.(js|ts)$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: {
+          fix: true, //autofixモードの有効化
+          failOnError: true, //エラー検出時にビルド中断
+        },
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
       },
       {
         test: /\.pug$/,
         use: [
           {
-            loader: 'pug-loader',
+            loader: "pug-loader",
             options: {
               pretty: true,
             },
@@ -37,12 +47,12 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               url: false,
             },
           },
-          'postcss-loader',
+          "postcss-loader",
         ],
       },
       {
@@ -50,40 +60,40 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               url: false,
             },
           },
-          'sass-loader',
-          'postcss-loader',
+          "sass-loader",
+          "postcss-loader",
         ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/pug/index.pug', //変換元のPugファイルの指定
-      filename: 'index.html', //出力するHTMLのファイル名
+      template: "./src/pug/index.pug", //変換元のPugファイルの指定
+      filename: "index.html", //出力するHTMLのファイル名
       inject: false, //バンドルしたjsファイルを読み込むscriptタグを自動出力しない
       minify: false, //minifyしない
     }),
     new HtmlWebpackPlugin({
-      template: './src/pug/sub.pug',
-      filename: 'sub.html',
+      template: "./src/pug/sub.pug",
+      filename: "sub.html",
       inject: false,
       minify: false,
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/style.css',
+      filename: "css/style.css",
     }),
     new CopyPlugin({
-      patterns: [{ from: 'src/img', to: 'img' }],
+      patterns: [{ from: "src/img", to: "img" }],
     }),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
       pngquant: {
-        quality: '70-80',
+        quality: "70-80",
       },
       gifsicle: {
         interlaced: false,
