@@ -1,11 +1,11 @@
 @import "./sub.scss";
 
 .example {
-  position: relative;
   top: 100;
-  display: flex;
   width: 100%;
-  height: auto;
+  position: relative;
+  display: flex;
   color: black;
+  height: auto;
   background-color: red;
 }
